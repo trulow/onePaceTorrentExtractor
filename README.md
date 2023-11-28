@@ -1,10 +1,10 @@
-# onePaceMagnetExtractor
+# onePaceTorrentExtractor
 
-A script to extract magnet links from the OnePace site.
+A script to extract torrent links from the OnePace site.
 
 ## Overview
 
-This script allows users to easily gather magnet links from the [OnePace website](https://onepace.net/watch) without manually searching for each episode's link.
+This script allows users to easily gather torrent links from the [OnePace website](https://onepace.net/watch) without manually searching for each episode's link.
 
 ## Requirements
 
@@ -18,10 +18,10 @@ This script allows users to easily gather magnet links from the [OnePace website
 4. In the developer console, switch to the `Console` tab.
 5. Copy the entire code block from this repository and paste it into the console.
 6. Hit `Enter` to run the script.
-7. Follow the on-screen prompts to extract magnet links for your desired arc.
+7. Follow the on-screen prompts to extract torrent links for your desired arc.
 
 ## Video Guide
-https://github.com/roshank231/onePaceMagnetExtractor/assets/83808600/d3d552c7-5fdb-4028-bb45-420210492652
+https://github.com/roshank231/onePaceTorrentExtractor/assets/83808600/d3d552c7-5fdb-4028-bb45-420210492652
 
 ## Code
 
@@ -76,13 +76,13 @@ function switchEpisode(episodeNumber, scrollToEpisode = true) {
     selectedEpisode.click();
 }
 
-function getMagnetLink() {
-    let links = Array.from(document.querySelectorAll('.Carousel_container__bEyKv > .Carousel_expander__FQ9Fs > .rmd-collapse > .Carousel_infoContainer__XQMVP > .Carousel_buttons__GB2gF [href^="https://api.onepace.net/download/magnet.php"]')).map(a => a.href);
+function getTorrentLink() {
+    let links = Array.from(document.querySelectorAll('.Carousel_container__bEyKv > .Carousel_expander__FQ9Fs > .rmd-collapse > .Carousel_infoContainer__XQMVP > .Carousel_buttons__GB2gF [href^="https://api.onepace.net/download/torrent.php"]')).map(a => a.href);
 
     return links;
 }
 
-function gatherMagnetLinks(start, end) {
+function gatherTorrentLinks(start, end) {
     let complete = [];
     let intervalTime = 200;  // 200ms or 0.20 seconds -- EDIT THIS DELAY TO BE HIGHER IS HAVING ISSUES!!!
 
@@ -90,7 +90,7 @@ function gatherMagnetLinks(start, end) {
     switchEpisode(episode);  // Scroll to the first episode
 
     let interval = setInterval(() => {
-        let links = getMagnetLink();
+        let links = getTorrentLink();
 
         links.forEach(link => {
             if (!complete.includes(link)) {
@@ -114,7 +114,7 @@ function gatherMagnetLinks(start, end) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
 
                 setTimeout(() => {
-                    console.log(`Detected ${complete.length} unique magnet links.`);
+                    console.log(`Detected ${complete.length} unique torrent links.`);
                     console.log("Completed gathering links. Here they are:");
                     console.log(complete.join('\n'));
                     console.log("Right click and 'Save As' the above links in the console to save as a TXT or LOG file to easily paste elsewhere!");
@@ -136,8 +136,8 @@ function initScrapingProcess() {
     let arc = findArcByName(arcName);
 
     if (arc) {
-        console.log("Scraping Magnet Links for: " + arcName + '\n' + "...");
-        gatherMagnetLinks(arc.start, arc.end);
+        console.log("Scraping Torrent Links for: " + arcName + '\n' + "...");
+        gatherTorrentLinks(arc.start, arc.end);
     } else {
         console.error("Arc not found. Please check the name and try again.");
     }
