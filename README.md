@@ -1,3 +1,5 @@
+Original Author https://github.com/roshank231/onePaceMagnetExtractor
+
 # onePaceTorrentExtractor
 
 A script to extract torrent links from the OnePace site.
