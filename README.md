@@ -1,5 +1,6 @@
-Original Author https://github.com/roshank231/onePaceMagnetExtractor
-Modified to pull torrents instead of magnets
+## Original Project: https://github.com/roshank231/onePaceMagnetExtractor
+
+## Modified to pull torrents instead of magnets
 
 # onePaceTorrentExtractor
 
